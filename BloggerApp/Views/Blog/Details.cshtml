@@ -1,0 +1,19 @@
+@model BloggerApp.Models.Post
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.Title;
+}
+
+<article class="detail-wrap">
+    <a asp-action="Index" class="detail-back">← &nbsp; All stories</a>
+
+    <header class="detail-header">
+        <span class="eyebrow">A story from the journal</span>
+        <h1 class="detail-title">@Model.Title</h1>
+        <p class="detail-byline">By @Model.Author <span aria-hidden="true">·</span> @Model.CreatedAt.ToString("MMMM dd, yyyy")</p>
+    </header>
+
+    <div class="detail-content">@Model.Content</div>
+    <a asp-action="Index" class="button button-outline">Back to all stories <span aria-hidden="true">←</span></a>
+</article>

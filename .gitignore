@@ -1,0 +1,9 @@
+# Build output
+**/bin/
+**/obj/
+.vs/
+*.user
+
+# Local connection strings and credentials
+BloggerApp/appsettings.json
+BloggerApp/appsettings.Development.json

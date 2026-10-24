@@ -1,0 +1,39 @@
+@model BloggerApp.Models.Post
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Write a story";
+}
+
+<section class="editor-intro">
+    <span class="eyebrow">Your words, your world</span>
+    <h1 class="page-heading">Start with a story.</h1>
+    <p class="intro-copy">Take your time. The best stories are the ones only you can tell.</p>
+</section>
+
+<form asp-action="Create" method="post" class="editor-card">
+    <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+    <div class="mb-4">
+        <label asp-for="Title" class="form-label">Story title</label>
+        <input asp-for="Title" class="editor-input title-input" placeholder="Give your story a thoughtful title" />
+        <span asp-validation-for="Title" class="field-validation"></span>
+    </div>
+
+    <div class="mb-4">
+        <label asp-for="Author" class="form-label">Your name</label>
+        <input asp-for="Author" class="editor-input" placeholder="How should readers know you?" />
+        <span asp-validation-for="Author" class="field-validation"></span>
+    </div>
+
+    <div>
+        <label asp-for="Content" class="form-label">Your story</label>
+        <textarea asp-for="Content" class="editor-input content-input" placeholder="Every good story begins somewhere..."></textarea>
+        <span asp-validation-for="Content" class="field-validation"></span>
+    </div>
+
+    <div class="editor-actions">
+        <button type="submit" class="button button-dark">Publish story <span aria-hidden="true">↗</span></button>
+        <a asp-action="Index" class="text-link">Cancel</a>
+    </div>
+</form>

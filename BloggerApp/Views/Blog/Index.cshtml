@@ -1,0 +1,47 @@
+@model IEnumerable<BloggerApp.Models.Post>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Stories & Ideas";
+    var posts = Model.ToList();
+}
+
+<section class="intro">
+    <span class="eyebrow">Stories, thoughtfully told</span>
+    <h1>A little space for<br /><em>big thoughts.</em></h1>
+    <p class="intro-copy">An independent journal for ideas, experiences, and the things we learn along the way. Find a moment to read, or share a story of your own.</p>
+</section>
+
+<section aria-labelledby="latest-stories">
+    <div class="section-heading">
+        <h2 id="latest-stories">The latest stories</h2>
+        <span class="post-count">@posts.Count @(posts.Count == 1 ? "story" : "stories")</span>
+    </div>
+
+    @if (posts.Count == 0)
+    {
+        <div class="empty-state">
+            <h3>Your first story starts here.</h3>
+            <p>Make this space yours. Share an idea, a lesson, or a story worth remembering.</p>
+            <a class="button button-dark" asp-action="Create">Write the first story <span aria-hidden="true">↗</span></a>
+        </div>
+    }
+    else
+    {
+        <div class="post-list">
+            @for (var index = 0; index < posts.Count; index++)
+            {
+                var post = posts[index];
+                <article class="post-card">
+                    <span class="post-number">@((index + 1).ToString("D2"))</span>
+                    <div class="post-main">
+                        <h3><a asp-action="Details" asp-route-id="@post.Id">@post.Title</a></h3>
+                        <p class="post-meta">By @post.Author <span aria-hidden="true">·</span> @post.CreatedAt.ToString("MMMM dd, yyyy")</p>
+                        <p class="post-excerpt">@post.Content</p>
+                    </div>
+                    <a class="post-link" asp-action="Details" asp-route-id="@post.Id">Read story <span aria-hidden="true">→</span></a>
+                </article>
+            }
+        </div>
+    }
+</section>
